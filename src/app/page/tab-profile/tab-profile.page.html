@@ -1,0 +1,154 @@
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+		<ion-toolbar>
+			<ion-title class="txt-light">
+				Profile
+			</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	
+	<ion-content common-parallax fullscreen [scrollEvents]="true">
+	
+		<div class="wrap-cover parallax-obj">
+			<div class="bg-profile shadow-4">
+				<div class="cover"></div>
+				<!-- <img class="parallax-obj parallax-up-obj parallax-blur-obj" src="assets/images/lemon11.jpg"> -->
+			</div>
+		</div>
+		<div class="wrap-avatar">
+			<div class="action-btn">
+				<ion-button shape="round" fill="clear" class="e2eShowPopover" (click)="goToProfileDetailsPage()">
+					<ion-icon name="more"></ion-icon>
+				</ion-button>
+							
+			</div>
+			<div class="avt-image" (click)="onUserPhoto()">
+					<img [src]="imageUrl">
+			</div>
+			<div class="action-btn">
+				 <ion-button shape="round" fill="clear" class="" (click)="onLogout()">
+					<ion-icon name="log-out"></ion-icon>
+				</ion-button>
+			</div>
+		</div>
+		<div class="">
+			<div class="info font-clr" text-center style="margin-bottom: 10px;">
+				<!-- <h2 class="fw-600 fs-26" no-margin>{{userObjet.name}}</h2> -->
+				<h2 class="fw-600 fs-26" no-margin>{{userObject.name | uppercase}}</h2>
+				<p class="txt4" no-margin>{{userObject.typeofBatsman}}, {{userObject.playforState}}</p>
+			</div>
+			<div class="font-clr" style="padding:0 15px">
+				<ion-row class="socio-stats">
+					<ion-col text-center>
+						<ion-icon class="head-clr fs-30" name="star"></ion-icon>
+						<p no-margin class="txt3 fs-18 fw-600">{{userObject.likes}}</p>
+						<h5 no-margin class="fs-14 txt4 fw-400">Likes</h5>
+					</ion-col>
+					<ion-col text-center>
+						<ion-icon class="head-clr fs-30"  ios="ios-exit" md="md-exit"></ion-icon>
+						<p no-margin class="txt3 fs-18 fw-600">{{userObject.follower}}</p>
+						<h5 no-margin class="fs-14 txt4 fw-400">Follower</h5>
+					</ion-col>
+					<ion-col text-center>
+						<ion-icon class="head-clr fs-30"  name="share"></ion-icon>
+						<p no-margin class="txt3 fs-18 fw-600">{{userObject.shares}}</p>
+						<h5 no-margin class="fs-14 txt4 fw-400">Shares</h5>
+					</ion-col>
+					<ion-col  text-center>
+						<ion-icon class="head-clr fs-30" name="star"></ion-icon>
+						<p no-margin class="txt3 fs-18 fw-600">{{userObject.score}}</p>
+						<h5 no-margin class="fs-14 txt4 fw-400">Runs</h5>
+					</ion-col>
+				</ion-row>
+				<div>
+					<h5>ABOUT {{userObject.name | uppercase}}</h5>
+					<p  class="txt4"><b>{{userObject.aboutme}}</b></p>
+					<div class="head-clr" style="text-align:right"><strong>READ MORE</strong></div>
+					<br>	
+					<h5>{{userObject.name | uppercase}} BADGES {{userObject.badges}}</h5>
+					<ion-row>
+						<ion-col text-center>
+							<ion-icon class="head-clr fs-30" name="star"></ion-icon>
+							<h5 no-margin class="fs-14 txt4 fw-400">STAR</h5>
+						</ion-col>
+						<ion-col text-center>
+							<ion-icon class="head-clr fs-30"  name="flame"></ion-icon>
+							<h5 no-margin class="fs-14 txt4 fw-400">ON FIRE</h5>
+						</ion-col>
+						<ion-col text-center>
+							<ion-icon class="head-clr fs-30"  name="star"></ion-icon>
+							<h5 no-margin class="fs-14 txt4 fw-400">SHINE</h5>
+						</ion-col>
+						<ion-col  text-center>
+							 
+						</ion-col>
+					</ion-row>
+				</div>
+			</div>
+			<div class="font-clr" style="padding:15px;background: #efefef;">
+				<div class="st-name">
+					<h5>{{userObject.name | uppercase}} POSTS</h5>
+					<span style="margin-top:10px;"><ion-button shape="round" fill="clear" class="" (click)="createPosts()">
+							Add Posts
+						</ion-button>
+					</span>	
+				</div>
+				<div class="wrap-slides-profile">
+					<ion-slides  pager="true" [options]="slideOpts">
+						<ion-slide class="slide-config">
+							<ion-card *ngFor= "let video of userObject?.userVideos">
+								<ion-card-header class="no-pd">
+										<video style="height:200px;width:100%;" controls (click)="toggleVideo()" #videoPlayer>
+												<source src="{{video.videoUrl}}" type="video/mp4" />
+												Browser not supported
+											</video>
+								</ion-card-header>
+								
+								<ion-card-content class="font-clr">
+									<ion-row>
+									<ion-col><div style="margin-bottom:10px;color:#000"><h2><Strong>{{video.title}}</Strong></h2></div></ion-col>
+									<ion-col><div style="text-align:right">{{video.videoDate | date: 'dd/MM/yyyy'}}</div></ion-col>
+									</ion-row>
+									<ion-row>
+											{{video.description}}
+									</ion-row>
+									
+									
+								</ion-card-content>
+							</ion-card>
+						</ion-slide>
+						
+					</ion-slides>
+				</div>
+			</div>
+	
+			<ion-row>
+				<ion-card class="no-pd">
+					<ion-card-content class="no-pd">
+						<div class="deal-img">
+							<img src="../../../assets/images/lemon10.png" alt="">
+						</div>  
+						<div class="deal-info">
+							<div>
+								<h2 style="color:#000"><strong>1000, Off on Cricket Shoe</strong></h2>
+								<span>Enjoy the code and to and blh blah blaj dsjhds jdhsfjkds jhdkfjds jhsdkjhfkjsd jhksdjfhksdf jhdskfhdkfh</span>
+							</div>
+							<br/>
+							<span><strong>832</strong> Redeems</span>
+							<br/>
+							<br/>
+							<ion-row>
+								<ion-col><span style="margin-top:20px;"><strong>{{userObject.score}}</strong> runs</span><span class="vr"></span></ion-col>
+								<ion-col class="seprator">
+								<ion-button shape="round" expand="block" fill="solid" color="primary" class="uppercase spacing1 fw-600" type="button" [routerLink]="['/app/deals', 101]">
+									Redeem
+								</ion-button></ion-col>
+							</ion-row>
+						</div>
+					</ion-card-content>
+				</ion-card>
+			</ion-row>
+	
+		</div>
+	
+	
+	</ion-content>

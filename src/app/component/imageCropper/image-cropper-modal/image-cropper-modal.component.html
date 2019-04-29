@@ -1,0 +1,44 @@
+<!-- Generated template for the PhotoSelectorComponent component -->
+<ion-header>
+  <ion-toolbar>
+      <ion-button slot="end" color="primary" (click)="onClosePhotoModal()">
+          <ion-icon name="close"></ion-icon>
+      </ion-button>
+    <ion-button slot="start" color="primary" (click)="onSavePhotoModal()">
+        <ion-icon name="checkmark"></ion-icon>
+    </ion-button>
+    <ion-title>Photo</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="div-background">
+  <div id="image-Cropper"></div>
+</ion-content>
+<ion-footer >
+  <!--<ion-toolbar >
+    <ion-buttons start>
+      <ion-button (click)="selectFromLibrary()" color="secondary">
+        <ion-icon name="albums"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons end>
+      <ion-button (click)="selectCamera()" color="secondary">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>-->
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="selectFromLibrary()">
+        <ion-icon slot="icon-only" name="albums"></ion-icon>
+      </ion-button>
+      
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="selectCamera()" >
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+  
+</ion-footer>

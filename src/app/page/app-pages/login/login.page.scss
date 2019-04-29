@@ -1,0 +1,220 @@
+// Custom variables
+// Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
+:host {
+	--page-margin: var(--app-broad-margin);
+	--page-background: var(--app-background-shade);
+	ion-content {
+		--background: url('../../../../assets/images/Login-in-BG.jpg') no-repeat 100% 100%;
+		}
+		 
+  }
+  
+  // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+  .login-content {
+	
+	--padding-start: var(--page-margin);
+	--padding-end: var(--page-margin);
+	--padding-top: var(--page-margin);
+	--padding-bottom: var(--page-margin);
+	
+	@media screen and (max-height: 612px) {
+		.gt-612{
+			display:none;
+		}
+	}
+	
+	 
+	.wrap-login{
+		width:100%;
+		height:100%;
+		position: absolute;
+	}
+	p{
+		color:#ffffffcf;
+	}
+	.align-ct{
+		text-align: center;
+	}
+
+	.register-btn{
+		border: 3px solid #f5a623;
+    border-radius: 50px;
+    --color: #fff;
+    --background: #0e1a0c;
+    letter-spacing: 1px;
+		cursor: pointer;
+		.button-native{
+			padding: 0 50px;
+		}
+	}
+	.auth-title {
+	  color: var(--ion-color-dark);
+	  font-weight: bold;
+	  margin-top: calc(var(--page-margin) / 2);
+	  margin-bottom: calc(var(--page-margin) * (3/2));
+	  letter-spacing: 0.6px;
+	}
+  
+	
+	 
+  	.input-item {
+			--padding-start: 0px;
+			--padding-end: 0px;
+			--inner-padding-end: 0px;
+			text-align: left;
+			padding-left: 17px;
+		
+	  }
+  
+	  .error-container {
+		.error-message {
+		  margin: calc(var(--page-margin) / 2) 0px;
+		  display: flex;
+		  align-items: center;
+		  color: var(--ion-color-danger);
+		  font-size: 14px;
+  		  ion-icon {
+			padding-inline-end: calc(var(--page-margin) / 2);
+		  }
+		}
+	  }
+		
+		.header-divider{
+			.bi-side{
+				border: 1px solid #fff;
+				margin: 40px 0;
+				display: inline-block;
+				width: 28.33%;
+			}
+			@media screen and (min-width: 768px) {
+				.bi-side{
+					width: 31.33%;
+				}
+			}
+
+			
+			.txt-center{
+				display: inline-block;
+				width: 33.33%;
+				margin: 31px 14px 25px;
+				vertical-align: top;
+				text-align: center;
+				color: #fff;
+			}
+			@media screen and (max-height: 768px) {
+				.txt-center{
+					margin: 2.5% 14px 3%;
+				}
+				.bi-side{
+					margin: 5% 0;
+				}
+			}
+		}
+	 
+  
+	.other-auth-options-row {
+	  justify-content: space-between;
+	  align-items: center;
+		.login-btn {
+			// margin: calc(var(--page-margin) / 2) 0px;
+			--background: #f5a623;
+			--border-radius:20px;
+			font-weight: 600;
+			letter-spacing: 1px;
+			cursor:pointer;
+		}
+	  .forgot-btn {
+			--color: #fff;
+			letter-spacing: 1px;
+			margin: 0px;
+			cursor:pointer;
+	  }
+  
+	  .signup-btn {
+			--color: var(--ion-color-secondary);
+			margin: 0px;
+	  }
+	}
+  
+	.social-auth-options {
+		text-align:center;
+		margin-bottom: 5px;
+		
+		.social-btn{
+			display: inline-block;
+			margin: 0px 15px;
+			cursor:pointer;
+		}
+
+		.fb{
+			--background:#1961b6;
+			font-size: 30px;
+		}
+
+		.tweeter{
+			--background:#4a90e2;
+		}
+
+		.g-plus{
+			--background:#d0021b;
+		}
+	  .options-divider {
+			color: var(--ion-color-medium);
+			margin: var(--page-margin) 0px;
+			text-align: center;
+	  }
+  
+	  .social-auth-btn {
+		margin: 0px;
+  
+		&:not(:first-child) {
+		  margin-top: var(--page-margin);
+		}
+	  }
+	}
+	.header-img{
+		height: 20%;
+		margin:auto auto 10% auto;
+	}
+	.brand{ 
+		flex: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 2%;
+		img{
+			margin:0px, auto, 15px,auto;
+			height:100px;
+			
+		}		
+	}
+
+	.brand-nm{
+		text-align:center;
+		color: #f5a623;
+	}
+	 .bg-img{
+		position: absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		right:0;
+		z-index:10;
+		img{
+			height:100%;
+			min-width: 100%; 
+		}
+	}
+	.footer{
+		position: fixed;
+    text-align: center;
+    right: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+		p{
+			color:#ffffff29;
+		}
+	}
+}
+  

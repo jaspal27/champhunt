@@ -1,0 +1,24 @@
+<ion-header no-border>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button color='primary' (click)="onDismiss(null)">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content fullscreen>
+    <div *ngIf="pageIndex ==1">
+      <h2>Who We Are</h2>
+      </div>
+    <div *ngIf="pageIndex ==2">
+        <h2>
+            Our Mission
+        </h2> 
+
+    </div>
+    <div *ngIf="pageIndex ==3">
+      <h2>Our Vision</h2>
+    </div>
+</ion-content>

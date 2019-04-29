@@ -1,0 +1,222 @@
+<!--<ion-header no-border>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button class="skip-walkthrough-button" fill="clear" (click)="dismiss()">
+            <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+-->
+
+
+
+<ion-content class="forms-validations-content" fullscreen>
+    
+  <ion-slides #slides  effect="fade" pager="true"  [options]="slidesOptions" >
+        <ion-slide class="slide-background "  [ngStyle]="{'background-image': 'url(' + backgroundFirst +')'}">
+        
+          <ion-list class="inputs-list" lines="inset" >
+              <div class="div-header div-size">
+                  <span>Welcome</span><br/>
+                  <span class="prof-name">{{transient.name}}</span><br/>
+                  <span>Please complete the following information</span>
+              
+                </div>
+                <form class="validations-form" [formGroup]="signupForm" (ngSubmit)="onSubmit(validationsForm.value)" style="padding-top:20px">
+                    <ion-item class="input-item" >
+                        <ion-label position="stacked">Name</ion-label>
+                        <ion-input type="text" formControlName="name" clearInput [(ngModel)]="transient.name"></ion-input>
+                      </ion-item>
+                      <div class="error-container">
+                          <ng-container *ngFor="let validation of validation_messages.name">
+                            <div class="error-message" *ngIf="signupForm.get('name').hasError(validation.type) && (signupForm.get('name').dirty || signupForm.get('name').touched)">
+                              <ion-icon name="information-circle-outline"></ion-icon>
+                              <span>{{ validation.message }}</span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        <ion-item class="input-item">
+                            <ion-label position="stacked">Date of Birth</ion-label>
+                            <ion-datetime formControlName="dob" display-format="DD, MMM, YYYY" min="1940" >
+                            </ion-datetime>
+                          </ion-item>
+                             
+                          <div class="error-container">
+                              <ng-container *ngFor="let validation of validation_messages.dob">
+                                <div class="error-message" *ngIf="signupForm.get('dob').hasError(validation.type) && (signupForm.get('dob').dirty || signupForm.get('dob').touched)">
+                                  <ion-icon name="information-circle-outline"></ion-icon>
+                                  <span>{{ validation.message }}</span>
+                                </div>
+                              </ng-container>
+                            </div>
+                      
+                      <ion-item class="input-item">
+                        <ion-label position="stacked">Email ID</ion-label>
+                        <ion-input type="text" formControlName="email" clearInput inputmode="email"></ion-input>
+                      </ion-item>
+                      <div class="error-container">
+                        <ng-container *ngFor="let validation of validation_messages.email">
+                          <div class="error-message" *ngIf="signupForm.get('email').hasError(validation.type) && (signupForm.get('email').dirty || signupForm.get('email').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message }}</span>
+                          </div>
+                        </ng-container>
+                      </div>
+                      <ion-item class="input-item">
+                        <ion-label position="stacked">Phone Number</ion-label>
+                        <div class="ip-inline">
+                            <ion-input type="text" formControlName="stdCode" [(ngModel)]="transient.stdCode"></ion-input>
+                            <ion-input type="number" formControlName="phone"></ion-input>
+                        </div>
+                      </ion-item>
+                       
+                      <div formGroupName="matching_passwords" *ngIf = "!isPasswordHide">
+                          <ion-item class="input-item">
+                            <ion-label position="stacked">Password</ion-label>
+                            <app-show-hide-password>
+                              <ion-input type="password" formControlName="password"></ion-input>
+                            </app-show-hide-password>
+                          </ion-item>
+                          <div class="error-container">
+                            <ng-container *ngFor="let validation of validation_messages.password">
+                              <div class="error-message" *ngIf="signupForm.get('matching_passwords').get('password').hasError(validation.type) && (signupForm.get('matching_passwords').get('password').dirty || signupForm.get('matching_passwords').get('password').touched)">
+                                <ion-icon name="information-circle-outline"></ion-icon>
+                                <span>{{ validation.message }}</span>
+                              </div>
+                            </ng-container>
+                          </div>
+                  
+                          <ion-item class="input-item">
+                            <ion-label position="stacked">Confirm Password</ion-label>
+                            <app-show-hide-password>
+                              <ion-input type="password" formControlName="confirm_password"></ion-input>
+                            </app-show-hide-password>
+                          </ion-item>
+                          <div class="error-container">
+                            <ng-container *ngFor="let validation of validation_messages.confirm_password">
+                              <div class="error-message" *ngIf="signupForm.get('matching_passwords').get('confirm_password').hasError(validation.type) && (signupForm.get('matching_passwords').get('confirm_password').dirty || signupForm.get('matching_passwords').get('confirm_password').touched)">
+                                <ion-icon name="information-circle-outline"></ion-icon>
+                                <span>{{ validation.message }}</span>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </div>
+                        <div class="error-container">
+                          <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+                            <div class="error-message" *ngIf="signupForm.get('matching_passwords').hasError(validation.type) && (signupForm.get('matching_passwords').get('confirm_password').dirty || signupForm.get('matching_passwords').get('confirm_password').touched)">
+                              <ion-icon name="information-circle-outline"></ion-icon>
+                              <span>{{ validation.message }}</span>
+                            </div>
+                          </ng-container>
+                        </div>
+                        
+                       <hr/><hr/>
+                     <ion-row>
+                        <ion-col>
+                            <ion-button class="submit-btn" style="width:100px;"   (click)="dismiss('cancel')">Cancel</ion-button>
+                         </ion-col>
+                       <ion-col>
+                          <ion-button class="submit-btn" style="width:100px;"  [disabled]="!signupForm.valid"  (click)="nextSlide()">Next</ion-button>
+                       </ion-col>
+                     </ion-row>
+                     <!-- <ion-row>
+                        <ion-col>
+                            <ion-button class="submit-btn" type="button" style="width:100px;"   (click)="dismiss()" fill="outline" >Cancel</ion-button>
+                        </ion-col>
+                      </ion-row>               -->
+                </form>  
+                 
+                  
+                    
+              </ion-list>
+             
+               
+        </ion-slide>
+        <ion-slide class="slide-background"  [ngStyle]="{'background-image': 'url(' + backgroundSecond +')'}">
+            <ion-list class="inputs-list" lines="inset">
+                <div class="div-header div-size">
+                    <span class="prof-name">{{transient.name}}</span><br/>
+                    <span>Tell us your Cricketing details</span>
+                </div>
+                <form class="validations-form" [formGroup]="tellUsForm" (ngSubmit)="onSubmit(validationsForm.value)"  style="padding-top:20px">
+                    <ion-item class="input-item" >
+                      <ion-label position="stacked">Currently you play for state</ion-label>
+                      <ion-input type="text" formControlName="playforState"  clearInput></ion-input>
+                    </ion-item>
+                    <ion-item class="input-item">
+                        <ion-label position="stacked">Type of Batsman</ion-label>
+                          <ion-input type="text" formControlName="typeofBatsman" clearInput></ion-input>
+                      </ion-item>
+                      <ion-item class="input-item">
+                          <ion-label position="stacked">Runs</ion-label>
+                            <ion-input type="text" formControlName="totalRuns" clearInput></ion-input>
+                        </ion-item>   
+                      <ion-item class="input-item">
+                          <ion-label position="stacked">Type of Bowler</ion-label>
+                            <ion-input type="text" formControlName="typeofBowler" clearInput></ion-input>
+                        </ion-item>
+                        <ion-item class="input-item">
+                            <ion-label position="stacked">Wikets</ion-label>
+                              <ion-input type="text" formControlName="totalWickets" clearInput></ion-input>
+                          </ion-item>  
+                        <ion-item class="input-item" >
+                            <ion-label position="stacked" >Current Cricket Club</ion-label>
+                            <ion-input type="text" formControlName="cricketClub" clearInput></ion-input>
+                          </ion-item>
+                          <ion-item class="input-item" >
+                              <ion-label position="stacked" >About Me</ion-label>
+                              <ion-input type="textarea" formControlName="aboutMe" clearInput></ion-input>
+                            </ion-item>
+                          <hr/><hr/> 
+                          <ion-row>
+                            <div class="btn-block">
+                              <ion-button class="submit-btn" type="button" expand="block"(click)="doSignup()" [disabled]="!tellUsForm.valid">Save</ion-button>
+                              <ion-button class="submit-btn" type="button" expand="block" (click)="goBack()" >Previous</ion-button>
+                            </div>
+                          </ion-row>
+                            
+                  </form>
+            </ion-list>
+        </ion-slide>
+          <ion-slide class="slide-background "  [ngStyle]="{'background-image': 'url(' + backgroundLast +')'}">
+              <ion-list class="inputs-list" lines="inset">
+                  <div class="div-header div-size">
+                      <span><h3>Woo Hoo! you all set</h3></span> 
+                      <span class="prof-name">{{transient.name}}</span><br/>
+                  </div>
+                   
+                  <hr/> 
+                  <div class="separator"></div>
+                    <!-- <ion-item class="input-item">
+                        <div style="margin-bottom: 50px;">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            
+                          </div>
+                         
+                    </ion-item>
+                    <hr/><hr/><hr/> -->
+                    <ion-item class="no-border">
+                      <p>Welcome to Our platform Hope you find what you looking for feel free to reach out if you have any feedback </p>
+                    </ion-item>
+                    <ion-item class="no-border">
+                        <p>looking forward to help you in your cricketing carrier </p>
+                    </ion-item>
+                    <ion-item class="no-border">
+                        <p>Enjoy playing!</p>
+                    </ion-item>
+                    
+                    <div class="separator"></div>
+                    <hr/>
+                    <hr/>
+                    <hr/>
+                    <div class="btn-block">
+                        <ion-button class="submit-btn" type="button" expand="block" (click)="dismiss()" >LOGIN</ion-button>
+                    </div>
+              </ion-list>  
+           </ion-slide>
+      </ion-slides>
+   
+  </ion-content>

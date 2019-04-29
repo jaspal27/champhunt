@@ -1,0 +1,145 @@
+<ion-header class="parallax-obj parallax-translate-obj header-transparent">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="ios-arrow-round-back"></ion-back-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen common-parallax [scrollEvents]="true">
+  <div class="wrap-blog-post bg-light offset-top-obj">
+	
+    <div class="cover">
+      <div class="slogan pdr-70 pdl-40 txt-light" (click)="onNews(newsObject)">
+        <p class="uppercase fs-14">{{newsObject?.title}}</p>
+        <!--<h4 no-margin class="fs-22">Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>-->
+        <h4 no-margin class="fs-18">
+          {{newsObject?.description}}
+        </h4>
+      </div>
+      <div class="bg-img">
+        <img class="parallax-obj parallax-up-obj parallax-blur-obj" src="assets/images/lemon23.jpg">
+        <!--<img class="parallax-obj parallax-up-obj parallax-blur-obj" [src]="newsObject?.img">-->
+      </div>
+    </div>
+  
+    <div padding class="main-content mgt--90" (click)="onAboutUS(1)">
+      <div margin-bottom class="post-element main-card shadow-3 bg-white">
+        <div padding class="excerpt">
+          <div padding class="left-txt">
+            <h4 no-margin class="pd-0 txt1 fs-20 pdr-20">WHO WE ARE</h4>
+            <p class="description txt3 fs-12 pdr-20">{{whoWeAre}}</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="user-friends-section border-top" style="margin-top:-10px;" >
+      <ion-row class="friends-row ">
+        
+        <ion-col class="friend-item" size="2" (click)="onAboutUS(2)">
+            <ion-card class="no-shadow">
+                <ion-card-content>
+                  <h2 class="pdb-5 fs-14 fw-600 txt2 ellipsis">OUR MISSION</h2>
+                  <p class="pdt-2 fs-12 txt3 ">{{ourMission}}</p>
+                </ion-card-content>
+              </ion-card>
+          </ion-col>
+          <ion-col class="friend-item" size="2" (click)="onAboutUS(3)">
+              <ion-card class="no-shadow">
+                 <ion-card-content>
+                    <h2 class="pdb-5 fs-14 fw-600 txt2 ellipsis">OUR VISION</h2>
+                    <p class="pdt-2 fs-12 txt3 ">{{ourVision}}</p>
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+      </ion-row>
+    </div>
+    <div class="user-friends-section" style="background-color: white;padding: 20px;">
+      <ion-row class="heading-row" >
+        <h3 class="details-section-title fs-14 fw-600 txt2">EVENTS GALLERY</h3>
+      </ion-row>
+      <ion-row class="gallery-row" style="background-color: white;">
+       <!-- <ion-col class="friend-item" size="2" *ngFor="let friend of profile.friends">
+          <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+            <app-image-shell class="friend-picture" [src]="friend.image"></app-image-shell>
+          </app-aspect-ratio>
+        </ion-col>-->
+        <ion-col class="friend-item" size="2" *ngFor="let friend of articlesPayload?.Articles" (click)="onArticles(friend)" >
+            <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+              <app-image-shell class="friend-picture" [src]="friend.image | safe: 'url'"></app-image-shell>
+            </app-aspect-ratio>
+          </ion-col>
+      </ion-row>
+      <ion-row class="heading-row" >
+        <a class="heading-call-to-action" >Read More</a>
+      </ion-row>
+    </div>
+    <div class="user-friends-section">
+      <ion-row class="heading-row" style="padding: 20px;">
+        <h3 class="details-section-title fs-14 fw-600 txt2">BEST PLAYERS</h3>
+        <app-bestplayers></app-bestplayers>
+      </ion-row>
+    </div>
+    <div class="user-friends-section border-top bg-color" style="margin-top:-10px;">
+        <ion-row class="friends-row ">
+          
+          <ion-col class="friend-item cust-css"  size="2">
+              <ion-card style="height:340px;width:340px;">
+                  <ion-card-content>
+                    <ion-row>
+                      <ion-col>
+                          <app-aspect-ratio [ratio]="{w: 2, h: 4}">
+                              <app-image-shell class="friend-picture" [src]="profile.friends[0].image"></app-image-shell>
+                            </app-aspect-ratio>
+                      </ion-col>
+                      <ion-col size="2" style="margin-left:10px;">
+                          <div>
+                            <h2><b>1000, Off on Cricket Shoe</b></h2>
+                            <span>Enjoy the code and to and blh blah blaj dsjhds jdhsfjkds jhdkfjds jhsdkjhfkjsd jhksdjfhksdf jhdskfhdkfh</span>
+                          </div>
+                          <br/>
+                          <span>832 Redeems</span>
+                          <br/>
+                          <br/>
+                          <ion-row>
+                            <ion-col><span style="margin-top:20px;">200 runs</span><span class="vr"></span></ion-col>
+                            <ion-col>
+                              <ion-button shape="round" expand="block" fill="solid" color="primary" class="uppercase spacing1 fw-600" type="button" [routerLink]="['/app/deals', 101]">
+                                Redeem
+                              </ion-button></ion-col>
+                          </ion-row>
+                      </ion-col>
+                    </ion-row>
+                    
+                  </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col class="friend-item cust-css" size="2">
+                <ion-card style="height:340px;width:340px;">
+                   <ion-card-content>
+                      <h2 class="pdb-5 fs-14 fw-600 txt2 ellipsis">Our Vision</h2>
+                      <p class="pdt-2 fs-12 txt3 ">{{ourVision}}</p>
+                    </ion-card-content>
+                  </ion-card>
+              </ion-col>
+        </ion-row>
+      </div>
+      <div class="user-friends-section">
+        <ion-row class="heading-row" style="padding: 20px;">
+          <h3 class="details-section-title fs-14 fw-600 txt2">NEWS</h3>
+        </ion-row>
+        <ion-row class="heading-row" style="padding: 20px;" *ngFor="let n of newsPayload?.News">
+          <ion-card [routerLink]="['/app/news', n.title]">
+            <ion-card-content>
+              <h2 class="pdb-5 fs-14 fw-600 txt2 ellipsis">{{n.title}}</h2>
+              <p class="pdt-2 fs-12 txt3 ">{{n.description}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </div>
+      <div class="user-friends-section" scrollY="true" class="fixed">
+          <iframe [src]="pollingUrl" width="400" height="550" frameborder="0" marginheight="0" marginwidth="0" (load)="resizeIframe(pollObj)">Loading...</iframe>
+      </div>
+  </div>
+</ion-content>

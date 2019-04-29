@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>tabNews</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngFor="let news of newsPayload?.News" [routerLink]="['/app/news', news.title]">
+                <ion-card-header>
+                <app-image-shell class="add-spinner add-overlay" [mode]="'cover'" [src]="news.img ">
+                    <app-aspect-ratio [ratio]="{w:3, h:2}">
+                    </app-aspect-ratio>
+                  </app-image-shell>
+                </ion-card-header>  
+             <ion-card-content>
+                <h4 style="margin: 0px;color:black">{{news.description}}</h4>
+             </ion-card-content>
+              </ion-card>
+        
+</ion-content>

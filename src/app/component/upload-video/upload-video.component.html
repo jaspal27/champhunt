@@ -1,0 +1,96 @@
+<!-- Generated template for the PhotoSelectorComponent component -->
+<ion-header>
+    <ion-toolbar>
+        <ion-button slot="end" color="primary" (click)="onClosePhotoModal()">
+            <ion-icon name="close"></ion-icon>
+        </ion-button>
+      
+      <ion-title>New Post</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding >
+      <div class="video-selection" *ngIf="!selectedVideo">
+          <p>Please select a video for upload from your gallery</p>
+          <ion-button (click)="selectVideo()" color="secondary">
+              Select Video
+          </ion-button>
+      </div>
+      <div class="video-section" *ngIf="selectedVideo">
+        <video style="width:90%;height:200px;" controls (click)="toggleVideo()" #videoPlayer>
+            <source src="{{selectedVideo}}" type="video/mp4" />
+            Browser not supported
+        </video>
+        <form class="validations-form" [formGroup]="validationsForm" (ngSubmit)="uploadVideo(validationsForm.value)">
+            <ion-list class="inputs-list" lines="full">
+              <ion-list-header>
+                <ion-label class="header-title">Post Informations</ion-label>
+              </ion-list-header>
+              <ion-item class="input-item">
+                <ion-label position="floating">Video Title</ion-label>
+                <ion-input type="text" formControlName="title" clearInput maxlength="25"></ion-input>
+              </ion-item>
+              <div class="error-container">
+                <ng-container *ngFor="let validation of validations.title">
+                  <div class="error-message" *ngIf="validationsForm.get('title').hasError(validation.type) && (validationsForm.get('title').dirty || validationsForm.get('title').touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+              <ion-item class="input-item">
+                  <ion-label position="floating">Video Description</ion-label>
+                  <ion-textarea type="text" formControlName="description" clearInput maxlength="200"></ion-textarea>
+                </ion-item>
+                <div class="error-container">
+                  <ng-container *ngFor="let validation of validations.description">
+                    <div class="error-message" *ngIf="validationsForm.get('description').hasError(validation.type) && (validationsForm.get('description').dirty || validationsForm.get('description').touched)">
+                      <ion-icon name="information-circle-outline"></ion-icon>
+                      <span>{{ validation.message }}</span>
+                    </div>
+                  </ng-container>
+                </div>
+                <ion-item class="input-item">
+                      <ion-label position="floating">Enter Video Date</ion-label>
+                      <ion-datetime formControlName="videoDate" display-format="MM DD, YYYY" min="1980" >
+                      </ion-datetime>
+                    </ion-item>
+                    <div class="error-container">
+                        <ng-container *ngFor="let validation of validations.videoDate">
+                          <div class="error-message" *ngIf="validationsForm.get('videoDate').hasError(validation.type) && (validationsForm.get('videoDate').dirty || validationsForm.get('videoDate').touched)">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span>{{ validation.message }}</span>
+                          </div>
+                        </ng-container>
+                      </div>
+                     </ion-list> 
+                   <div class="button-options" *ngIf="!uploadedVideo && !isUploading">
+                        <ion-button ion-button clear (click)="cancelSelection()">
+                          <ion-icon name="close-circle" color="danger"></ion-icon>
+                        </ion-button>
+                        <ion-button ion-button clear type="submit" [disabled]="!validationsForm.valid">
+                          <ion-icon name="checkmark-circle" color="secondary"></ion-icon>
+                        </ion-button>
+                    </div>  
+                   </form>  
+        
+        <div *ngIf="isUploading">
+            <div class="uploading">
+              <p><ion-spinner name="bubbles"></ion-spinner></p>
+              <p>Uploading - {{ uploadPercent }}% Complete</p>
+            </div>
+            <div class="button-options">
+              <ion-button ion-button clear (click)="cancelUpload()">
+                <ion-icon name="close-circle" color="danger"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+      
+          <div class="button-options" *ngIf="uploadedVideo">
+            <ion-button ion-button clear (click)="cancelSelection()">
+              Start Over
+            </ion-button>
+          </div>
+      
+        </div>         
+  </ion-content>
+  

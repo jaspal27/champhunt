@@ -1,0 +1,16 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title >
+            News
+          </ion-title>
+      <ion-buttons slot="end">
+        <ion-button color='primary' (click)="onDismiss(null)">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content fullscreen>
+    <div [innerHTML]="newsDetails.detailedDescription"></div>
+</ion-content>

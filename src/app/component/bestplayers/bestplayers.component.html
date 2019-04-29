@@ -1,0 +1,45 @@
+<div class="listing-item" >
+ 
+  <ion-row class="description-row" style="background-color: white;" *ngFor="let friend of profile.friends">
+     
+    <ion-col class="accommodations-col" size="12">
+      <ion-row class="accommodations-wrapper">
+        <ion-col class="item-accommodation">
+           <img [src]="friend.image" style="width:100px;height:100px;">
+              
+        </ion-col>
+        <ion-col class="item-accommodation">
+          
+            <span class="accommodation-property "><strong>{{friend.fname}}</strong> &nbsp; {{friend.lname}}</span>
+            <span class="accommodation-property accommodation-margin">
+              <app-text-shell [data]="friend.job" class="no-animation"></app-text-shell>
+            </span>
+          </ion-col>
+        <ion-col class="item-accommodation">
+          
+          <span class="accommodation-value">
+            <app-text-shell [data]="friend.followers" class="no-animation"></app-text-shell>
+          </span>
+          <span class="accommodation-property accommodation-margin">Matches</span>
+        </ion-col>
+        <ion-col class="item-accommodation">
+          
+          <span class="accommodation-value">
+            <app-text-shell [data]="friend.followings" class="no-animation"></app-text-shell>
+          </span>
+          <span class="accommodation-property accommodation-margin">Runs</span>
+        </ion-col>
+        <ion-col class="item-accommodation ">
+          
+          <span class="accommodation-value">
+            <app-text-shell [data]="dataobject" class="no-animation"></app-text-shell>
+          </span>
+          <span class="accommodation-property accommodation-margin">Wickets</span>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+
+  </ion-row>
+</div>
+<br/>
+

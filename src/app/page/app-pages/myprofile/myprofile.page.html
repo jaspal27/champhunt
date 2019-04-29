@@ -1,0 +1,172 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color='primary' (click)="onDismiss(null)">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="forms-validations-content">
+    <form class="validations-form" [formGroup]="validationsForm" (ngSubmit)="onSubmit(validationsForm.value)">
+      <ion-list class="inputs-list" lines="full">
+        <ion-list-header>
+          <ion-label class="header-title">Personal Informations</ion-label>
+        </ion-list-header>
+        <ion-item class="input-item">
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input type="text" formControlName="firstname" clearInput></ion-input>
+        </ion-item>
+        <div class="error-container">
+          <ng-container *ngFor="let validation of validations.firstname">
+            <div class="error-message" *ngIf="validationsForm.get('firstname').hasError(validation.type) && (validationsForm.get('firstname').dirty || validationsForm.get('firstname').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span>{{ validation.message }}</span>
+            </div>
+          </ng-container>
+        </div>
+       <ion-item class="input-item">
+              <ion-label position="floating">Gender</ion-label>
+              <ion-select formControlName="gender" cancelText="Cancel" okText="OK">
+                  <ion-select placeholder="Select One">
+                      <ion-select-option value="f">Female</ion-select-option>
+                      <ion-select-option value="m">Male</ion-select-option>
+                    </ion-select>
+              </ion-select>
+            </ion-item>
+            <div class="error-container">
+                <ng-container *ngFor="let validation of validations.gender">
+                  <div class="error-message" *ngIf="validationsForm.get('gender').hasError(validation.type) && (validationsForm.get('gender').dirty || validationsForm.get('gender').touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>{{ validation.message }}</span>
+                  </div>
+                </ng-container>
+              </div>
+            <ion-item class="input-item">
+                <ion-label position="floating">DOB</ion-label>
+                <ion-datetime formControlName="dob" display-format="MM DD, YYYY" min="1940" >
+                </ion-datetime>
+              </ion-item>
+              <div class="error-container">
+                  <ng-container *ngFor="let validation of validations.dob">
+                    <div class="error-message" *ngIf="validationsForm.get('dob').hasError(validation.type) && (validationsForm.get('dob').dirty || validationsForm.get('dob').touched)">
+                      <ion-icon name="information-circle-outline"></ion-icon>
+                      <span>{{ validation.message }}</span>
+                    </div>
+                  </ng-container>
+                </div>
+          <ion-item class="input-item">
+              <ion-label position="floating">Phone</ion-label>
+              <ion-input type="number" formControlName="phone"></ion-input>
+            </ion-item>
+            <ion-item class="input-item">
+              <ion-label position="floating">Country</ion-label>
+              <ion-input type="text" formControlName="country"></ion-input>
+            </ion-item>
+                <ion-item class="input-item">
+                  <ion-label position="floating">State</ion-label>
+                  <ion-input type="text" formControlName="state"></ion-input>
+                </ion-item>
+                <ion-item class="input-item">
+                    <ion-label position="floating">City</ion-label>
+                    <ion-input type="text" formControlName="city"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-list class="inputs-list" lines="full" style="margin-top:-30px;">
+            <ion-list-header>
+              <ion-label class="header-title">Profile Information</ion-label>
+            </ion-list-header>
+            <ion-item class="input-item">
+                <ion-label position="floating">Player Type</ion-label>
+                <ion-select  cancelText="Cancel" formControlName="playerType" okText="OK">
+                  <ion-select-option  *ngFor="let playerType of profileOptionObject.PlayerType" [value]="playerType" >{{playerType}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="input-item">
+                <ion-label position="floating">Batsman Type</ion-label>
+                <ion-select  cancelText="Cancel" formControlName="batsmanType" okText="OK">
+                  <ion-select-option *ngFor="let batsmanType of profileOptionObject.BatsmanType" [value]="batsmanType" >{{batsmanType}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="input-item">
+                <ion-label position="floating">Bowler Type</ion-label>
+                <ion-select  cancelText="Cancel" okText="OK" formControlName="BowlerType">
+                  <ion-select-option *ngFor="let BowlerType of profileOptionObject.BowlerType" [value]="BowlerType" >{{BowlerType}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item> 
+            <ion-item class="input-item">
+                <ion-label position="floating">Batting Position</ion-label>
+                <ion-select  cancelText="Cancel" okText="OK" formControlName="BattingPosition">
+                  <ion-select-option *ngFor="let BattingPosition of profileOptionObject.BattingPosition" [value]="BattingPosition" >{{BattingPosition}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="input-item">
+                <ion-label position="floating">Fielding Position</ion-label>
+                <ion-select  cancelText="Cancel" okText="OK" formControlName="FieldingPosition">
+                  <ion-select-option *ngFor="let FieldingPosition of profileOptionObject.FieldingPosition" [value]="FieldingPosition" >{{FieldingPosition}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="input-item">
+                <ion-label position="floating">Favorite Format</ion-label>
+                <ion-select  cancelText="Cancel" okText="OK" formControlName="FavoriteFormat">
+                  <ion-select-option *ngFor="let FavoriteFormat of profileOptionObject.FavoriteFormat" [value]="FavoriteFormat" >{{FavoriteFormat}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="input-item">
+                <ion-label position="floating">Favorite International Team</ion-label>
+                <ion-select  cancelText="Cancel" okText="OK" formControlName="FavoriteTeam">
+                  <ion-select-option *ngFor="let FavoriteTeam of profileOptionObject.FavoriteInternationalTeam" [value]="FavoriteTeam" >{{FavoriteTeam}}
+                  </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="input-item">
+                <ion-label position="floating">Favorite IPL</ion-label>
+                <ion-input type="text" formControlName="FavoriteIPL" clearInput ></ion-input>
+            </ion-item> 
+            <ion-item class="input-item">
+                <ion-label position="floating">Favorite Cricketing Shot</ion-label>
+                <ion-input type="text" formControlName="FavoriteCricketShot" clearInput ></ion-input>
+            </ion-item> 
+            
+            <ion-item class="input-item">
+                <ion-label position="floating">Favorite Delivery</ion-label>
+                <ion-input type="text" formControlName="FavoriteDelivery" clearInput ></ion-input>
+            </ion-item>
+            
+            <ion-item class="input-item">
+                <ion-label position="floating">Favorite WK so far</ion-label>
+                <ion-input type="text" formControlName="FavoriteWK"  clearInput ></ion-input>
+            </ion-item> 
+            <ion-item class="input-item">
+                <ion-label position="floating">All time favorite Player</ion-label>
+                <ion-input type="text"  clearInput formControlName="AllTimeFavPlayer"  ></ion-input>
+              </ion-item>
+              <ion-item class="input-item">
+                  <ion-label position="floating">Current Cricket Club</ion-label>
+                  <ion-input type="text"  clearInput  formControlName="ccc" ></ion-input>
+              </ion-item>  
+              <ion-item class="input-item">
+                  <ion-label position="floating">How much time do you spend in Gym</ion-label>
+                  <ion-input type="text"  clearInput formControlName="spendTimeGym" ></ion-input>
+              </ion-item>
+              <ion-item class="input-item">
+                  <ion-label position="floating">Any Injuries</ion-label>
+                  <ion-input type="text"  clearInput formControlName="anyInjury"  ></ion-input>
+              </ion-item>
+              <ion-item class="input-item">
+                  <ion-label position="floating">Which Player in current Indian cricket team you would like to be replaced with you?</ion-label>
+                  <ion-input type="text"  clearInput formControlName="playerLikeToReplace"  ></ion-input>
+              </ion-item>    
+        </ion-list>
+     
+  
+      <ion-button class="submit-btn" type="submit" expand="block" fill="outline" [disabled]="!validationsForm.valid">Submit</ion-button>
+    </form>
+  </ion-content>
+
